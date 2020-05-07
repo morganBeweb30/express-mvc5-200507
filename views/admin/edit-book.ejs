@@ -1,0 +1,35 @@
+<%- include('../includes/head') %>
+
+<%- include('../includes/nav') %>
+
+        <h1 class="main__title1">Modifier un livre</h1>
+
+        <h3 class="main__title2">Remplir le formulaire</h3>
+
+        <form action="/admin/edit-book" method="post" class="form-book">
+            <input type="hidden" name="bookId" value="<%= book.id %>">
+            <div class="">
+                <label for="title" class="form-control__label">Titre</label>
+                <input type="text" name="title" id="title" class="form-control__input" placeholder="<%= book.title %>" value="<%= book.title %>" />
+            </div>
+            <div class="">
+                <label for="image" class="form-control__label">Image</label>
+                <input type="text" name="image" id="image" class="form-control__input" placeholder="<%= book.image %>" value="<%= book.image %>" />
+            </div>
+            <div class="">
+                <label for="price" class="form-control__label">prix</label>
+                <input type="number" name="price" id="price" class="form-control__input" step="0.01" placeholder="<%= book.price %>" value="<%= book.price %>" />
+            </div>
+            <div class="">
+                <label for="descr" class="form-control__label">Description</label>
+                <textarea type="text" name="descr" id="descr" class="form-control__input"><%= book.descr %></textarea>
+            </div>
+            
+            <button type="submit" class="form-book__button">Modifier le livre</button>
+        </form>
+    </main>
+    
+
+<%- include('../includes/footer') %>
+
+

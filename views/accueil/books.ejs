@@ -1,0 +1,34 @@
+
+<%- include('../includes/head') %>
+
+<%- include('../includes/nav') %>
+
+    <% if(books.length > 0) { %>
+        <h2><%= pageTitle %></h2>
+            <ul class="user__list">
+                <% for(let book of books) { %>
+                    <form action="/book-detail/:bookId" method="get">
+                        <li>
+                            <input type="hidden" name="bookId" value="<%= book.id %>">
+                            <button type="submit">Voir</button>
+                            <h3 class="bold"><%= book.title %></h3>
+                            <img src="/img/<%= book.image %>" width="80px" height="80px" alt="texte alternatif à l'image" />
+                            <p>Prix : <%= book.price %></p>
+                            <p><%= book.descr %></p>
+                            <div class="card__actions">
+                                <a href="/book-detail/<%= book.id %>" class="btn">Voir le livre</a>
+                                <br>
+                                <%- include('../includes/add-to-cart.ejs', {book: book}) %>
+                            </div>
+                        </li>
+                    </form>
+                <% } %>
+            </ul>
+    <% } else { %>
+        <h3>Il n'y a pas de livres enregistrés</h3>
+    <% } %>
+    <h4><%= books.length %> livres</h4>
+    <p><%#= hour #%></p>
+
+<%- include('../includes/footer') %>
+

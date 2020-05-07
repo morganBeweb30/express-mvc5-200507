@@ -1,0 +1,57 @@
+
+<%- include('../includes/head') %>
+
+<%- include('../includes/nav') %>
+
+<h2>Panier</h2>
+
+  <% if(books.length > 0) { %>
+    <h2>
+      <%= pageTitle %>
+    </h2>
+
+    <!--ul class="user__list">
+      <% for(let book of books) { %>
+        <form action="/book-detail/:bookId" method="get">
+          <li>
+            <input type="hidden" name="bookId" value="<%= book.id %>">
+            <button type="submit">Voir</button>
+            <h3 class="bold"><%= book.title %></h3>
+            <img src="/img/<%= book.image %>" width="80px" height="80px" alt="texte alternatif à l'image" />
+            <p>Prix : <%= book.price %></p>
+            <p><%= book.descr %></p>
+            <div class="card__actions">
+              <%#- include('../includes/add-to-cart.ejs') #%>
+              <!--button class="btn">Ajouter au panier</!--button>
+            </div>
+          </li>
+        </form>
+      <% } %>
+    </ul-->
+
+    <% if(books.length>0) { %>
+      <ul>
+          <% books.forEach(book => { %>
+            <li style="list-style-type: none;">
+              <img src="<%= book.bookData.image %>" alt="<%= book.bookData.title %>" height="50px" width="50px">
+              <p>
+                <%= book.bookData.title %> | Quantité : <%= book.qty %> | Prix : <%= book.bookData.price %>
+              </p>
+              <form action="/cart-delete-item" method="post">
+                <input type="hidden" name="bookId" value="<%= book.bookData.id %>">
+                <button type="submit" class="btn">Supprimer</button>
+              </form>
+              <hr>
+            </li>
+          <% }) %>
+      </ul>
+      <h3>Prix total : <%= cart.totalPrice % €></h3>
+    <% } else { %>
+      <h3>Il n'y a pas de livres dans le panier</h3>
+    <% } %>
+    <h4><%= books.length %> livres</h4>
+    <p><%#= hour #%></p>
+
+<%- include('../includes/footer') %>
+
+

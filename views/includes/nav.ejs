@@ -1,0 +1,38 @@
+</head>
+<body>
+
+<!-- main-header block -->
+<header class="main-header">
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <a href="/">Accueil</a>
+                <!-- à ajouter au a pour changer le css de la page active : class="<%#= path==='/' ? 'active' : '' #%>"-->
+            </li>
+            <li class="main-header__item">
+                <a href="/books">Tous nos livres</a>
+            </li>
+            <li class="main-header__item">
+                <a href="/cart">Panier</a>
+                <!-- on ne précise pas /accueil mais on précise /user -->
+            </li>
+            <li class="main-header__item">
+                <a href="/orders">Commandes</a>
+            </li>
+            <li class="main-header__item">
+                <a href="/checkout">Checkout</a>
+            </li>
+            <li class="main-header__item">
+                <a href="/admin/add-book">Ajouter un livre</a>
+            </li>
+            <li class="main-header__item">
+                <a href="/admin/admin-books">Admin livres</a>
+            </li>
+            <!-- li class="main-header__item">
+                <a href="/ssi/add-site">Ajouter un site de veille</a>
+            </!-->
+        </ul>
+    </nav>
+</header>
+
+<main class="container centered">

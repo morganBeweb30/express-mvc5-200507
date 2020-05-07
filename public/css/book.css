@@ -1,0 +1,58 @@
+:root {
+    --width-form: 60rem;
+    --height-form: 2.5rem;
+    --orange: #fd7e14;
+    --blanc: #ffffe0;
+    --inputs: #dbc441;
+    --buttons: #3e00a1;
+}
+
+
+.form-book {
+    width: var(--width-form);
+    margin: auto;
+}
+
+.form-control {
+    margin: 2rem auto;
+}
+
+.form-control__label,
+.form-control__input,
+.form-control__textarea {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+}
+.form-control input,
+.form-control__textarea {
+    border: 1px solid var(--inputs);
+    font: inherit;
+    border-radius: 2px;
+}
+.form-control input {
+    height: var(--height-form);
+}
+
+.btn {
+    font: inherit;
+    border: 1px solid var(--buttons);
+    color: var(--buttons);
+    background: white;
+    height: var(--height-form);
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 10px auto;
+    margin-left: 8px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+button:hover,
+button:active  {
+    background-color: var(--buttons);
+    color: white!important;
+}
+

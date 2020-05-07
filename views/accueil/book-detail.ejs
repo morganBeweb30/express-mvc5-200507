@@ -1,0 +1,16 @@
+<%- include('../includes/head') %>
+
+<%- include('../includes/nav') %>
+
+<h2>Détail du livre</h2>
+
+<h3 class="bold"><%= book.title %></h3>
+<img src="/img/<%= book.image %>" alt="<% book.title %>" />
+<p>Prix : <%= book.price %></p>
+<p><%= book.descr %></p>
+<div class="card__actions">
+    <!-- Fix book.id ? -->
+    <%- include('../includes/add-to-cart.ejs', {book: book}) %>
+</div>
+
+<%- include('../includes/footer') %>
