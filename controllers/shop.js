@@ -3,54 +3,45 @@ const Cart = require('../models/cart');
 
 //  /accueil/index
 exports.getIndex = (req, res, next) => {
-    Book.fetchAll((books) => {
-        res.render('accueil/index', {
-            pageTitle: 'Accueil',
-            siteTitle: 'Le Libraire',
-            books: books
-        });
-    });
+    Book.fetchAll()
+        .then(([books]) => {
+            res.render('accueil/index', {
+                pageTitle: 'Accueil',
+                siteTitle: 'Le Libraire',
+                books: books
+            });
+            console.log(books);
+        })
+        .catch((err) => console.log(err))
+};
+
+//  /accueil/books
+exports.getAllBooks = (req, res, next) => {
+    Book.fetchAll()
+        .then(([books]) => {
+            res.render('accueil/books', {
+                pageTitle: 'Accueil',
+                siteTitle: 'Le Libraire',
+                books: books
+            });
+            console.log(books);
+        })
+        .catch((err) => console.log(err))
 };
 
 //  /accueil/book-detail
 exports.getBookDetail = (req, res, next) => {
     const bookId = req.params.bookId;
-    Book.getBookById(bookId, book => {
-        res.render('accueil/book-detail', {
-            book: book,
-            pageTitle: 'Titre du livre',    //  book.title, 
-            siteTitle: 'Le Libraire'
-        });
-    });
+    Book.getBookById(bookId)
+        .then(([book]) => {
+            res.render('accueil/book-detail', {
+                book: book[0],
+                pageTitle: 'Titre du livre',    //  book.title, 
+                siteTitle: 'Le Libraire'
+            })
+        })
+        .catch((err) => console.log(err));
 }
-/***************** adminController ***************
-exports.getEditBook = (req, res, next) => {
-    const bookId = req.params.bookId;
-    Book.getBookById(bookId, book => {
-        if(!book) {
-            console.log(book);
-        }
-        res.render('admin/edit-book', {
-            pageTitle: 'Modifier un livre',
-            siteTitle: 'Admin',
-            editing: editMode,
-            book: book
-        });
-    });
-}
-/*************************************************/
-
-
-//  /accueil/books
-exports.getAllBooks = (req, res, next) => {
-    Book.fetchAll((books) => {
-        res.render('accueil/books', {
-            pageTitle: 'Tous nos livres',
-            siteTitle: 'Le Libraire',
-            books, books
-        });
-    });
-};
 
 exports.getCart = (req, res, next) => {
     Cart.getCart((cart) => {

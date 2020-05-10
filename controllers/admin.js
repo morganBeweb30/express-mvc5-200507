@@ -17,20 +17,37 @@ exports.postAdminBooks = (req, res, next) => {
     const price = req.body.price;
     const descr = req.body.descr;
     const book = new Book(null, title, image, price, descr);
-    book.save();
-    res.redirect('admin-books');
+    book.save()
+        .then(() => {
+            console.log('books');
+            res.redirect('admin-books');
+        })
+        .catch((err) => console.log(err));
 }
-
+//  /accueil/index
+exports.getIndex = (req, res, next) => {
+    Book.fetchAll()
+        .then(([books]) => {
+            res.render('accueil/index', {
+                pageTitle: 'Accueil',
+                siteTitle: 'Le Libraire',
+                books: books
+            });
+            console.log(books);
+        })
+        .catch((err) => console.log(err))
+};
 //  get /admin/admin-books
 exports.getAdminBooks = (req, res, next) => {
-    Book.fetchAll((books) => {
-//        console.log(`books : ${JSON.stringify(books)}`);
+    Book.fetchAll()
+    .then(([books]) => {
         res.render('admin/admin-books', {
             pageTitle: 'Tous nos livres',
             siteTitle: 'Admin',
             books: books
         });
-    });
+    })
+    .catch((err) => console.log(err));
 }
 
 //  get /admin/edit-book
