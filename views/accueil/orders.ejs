@@ -3,7 +3,32 @@
 <%- include('../includes/nav') %>
 
 <h2>Commandes</h2>
+<% if(orders.length <= 0) { %>
+  <h3>Pas de commande en cours</h3>
+<% } else { %>
+  <% orders.forEach((order) => { %>
+    <li>
+      <h3># <%= order.id %></h3>
 
+      <ul>
+        <% order.books.forEach(book => { %>
+          <li style="list-style-type: none;">
+            <img src="<%= book.bookData.image %>" alt="<%= book.bookData.title %>" height="50px" width="50px">
+            <p>
+              <%= book.bookData.title %> | Quantité : <%= book.qty %> | Prix : <%= book.bookData.price %>
+            </p>
+            <form action="/cart-delete-item" method="post">
+              <input type="hidden" name="bookId" value="<%= book.bookData.id %>">
+              <button type="submit" class="btn">Supprimer</button>
+            </form>
+            <hr>
+          </li>
+        <% }) %>
+      </ul>
+      <!-- h3>Prix total : <%#= cart.totalPrice #%> €</!-->
+      <% } %>
+    </li>
+  <% }); %>
 
 
 <%- include('../includes/footer') %>

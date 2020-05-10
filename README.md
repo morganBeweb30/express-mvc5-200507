@@ -11,6 +11,9 @@ TP node express ejs MySQL + sequelize en MVC (partie 5)
 *  body-parser
 *  ejs
 *  fs
+*  mysql2
+*  sequelize
+
 
 
 

@@ -11,7 +11,7 @@
     </h2>
 
     <!--ul class="user__list">
-      <% for(let book of books) { %>
+      <%# for(let book of books) { %>
         <form action="/book-detail/:bookId" method="get">
           <li>
             <input type="hidden" name="bookId" value="<%= book.id %>">
@@ -19,7 +19,7 @@
             <h3 class="bold"><%= book.title %></h3>
             <img src="/img/<%= book.image %>" width="80px" height="80px" alt="texte alternatif à l'image" />
             <p>Prix : <%= book.price %></p>
-            <p><%= book.descr %></p>
+            <p><%= book.descr #%></p>
             <div class="card__actions">
               <%#- include('../includes/add-to-cart.ejs') #%>
               <!--button class="btn">Ajouter au panier</!--button>
@@ -33,19 +33,22 @@
       <ul>
           <% books.forEach(book => { %>
             <li style="list-style-type: none;">
-              <img src="<%= book.bookData.image %>" alt="<%= book.bookData.title %>" height="50px" width="50px">
+              <img src="<%= book.image %>" alt="<%= book.title %>" height="50px" width="50px">
               <p>
-                <%= book.bookData.title %> | Quantité : <%= book.qty %> | Prix : <%= book.bookData.price %>
+                <%= book.title %> | Quantité : <%= book.cartItem.quantity %> | Prix : <%= book.bookData.price %>
               </p>
               <form action="/cart-delete-item" method="post">
-                <input type="hidden" name="bookId" value="<%= book.bookData.id %>">
+                <input type="hidden" name="bookId" value="<%= book.id %>">
                 <button type="submit" class="btn">Supprimer</button>
               </form>
               <hr>
             </li>
           <% }) %>
       </ul>
-      <h3>Prix total : <%= cart.totalPrice % €></h3>
+      <!-- h3>Prix total : <%#= cart.totalPrice #%> €</!-->
+      <form action="/create-order" method="post">
+        <button type="submit" class="btn">Valider la commande</button>
+      </form>
     <% } else { %>
       <h3>Il n'y a pas de livres dans le panier</h3>
     <% } %>
